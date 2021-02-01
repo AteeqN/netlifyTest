@@ -7,14 +7,14 @@ export default function NavBr() {
   return (
     <div className={styles.navigationBar}>
       <Nav className="justify-content-center" activeKey="/home">
-        <Nav.Link>
+        <Nav.Link href='/'>
           <Link href='/'>Home</Link>
         </Nav.Link>
         <Nav.Link>
-        <Link href="/news">News</Link>
+          <Link href="/news"><div> News</div></Link>
         </Nav.Link>
         <Nav.Link>
-        <Link href="/about">About</Link>
+          <Link href="/about">About</Link>
         </Nav.Link>
       </Nav>
     </div>

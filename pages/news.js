@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 function News({ data }) {
     // console.log(data.results[0].multimedia[0].url)
-    console.log(data)
+    // console.log(data)
     return ([
         <NavBr />,
         <Container>
@@ -67,15 +67,26 @@ function News({ data }) {
         <Footer />
     ])
 }
-export async function getStaticProps() {
-    const res = await fetch(`https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=3jxlrOePjuldv4KmuADG7CAb9VY222bX`);
-    const data = await res.json();
+// export async function getStaticProps() {
+//     const res = await fetch(`https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=3jxlrOePjuldv4KmuADG7CAb9VY222bX`);
+//     const data = await res.json();
+//     // console.log(data)
+//     return{
+//         props: {
+//             data,
+//         },
+//         //revalidate: 60 // seconds
+//     }
+// }
+
+// This gets called on every request
+export async function getServerSideProps() {
     // console.log(data)
-    return{
-        props: {
-            data,
-        },
-        //revalidate: 60 // seconds
-    }
-}
+    // Fetch data from external API
+    const res = await fetch(`https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=3jxlrOePjuldv4KmuADG7CAb9VY222bX`)
+    const data = await res.json()
+  
+    // Pass data to the page via props
+    return { props: { data } }
+  }
 export default News
